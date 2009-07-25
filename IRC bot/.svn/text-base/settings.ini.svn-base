@@ -1,0 +1,16 @@
+[userinfo]
+nick=
+ident=
+channel=
+realname=
+
+[connection]
+server=
+port=
+
+
+[mysql]
+user=
+server=
+pass=
+sqlenabled=
