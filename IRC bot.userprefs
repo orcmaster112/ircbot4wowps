@@ -1,15 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="IRC bot/Revision.cs" ctype="Workbench">
     <Files>
-      <File FileName="IRC bot/Bot.cs" Line="32" Column="68" />
+      <File FileName="IRC bot/Revision.cs" Line="5" Column="44" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="IRC bot" expanded="True">
-            <Node name="References" expanded="True" />
-            <Node name="Filter.cs" selected="True" />
-          </Node>
+        <State expanded="True" selected="True">
+          <Node name="IRC bot" expanded="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">
