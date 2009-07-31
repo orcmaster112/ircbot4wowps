@@ -1,23 +1,35 @@
 ﻿using System;
 using System.Xml;
+using System.Xml.XPath;
+using System.Net;
 
 namespace IRC_Bot
 {
-    class AscentStats
+    class AscentStats : Bot
     {
-
+        public static string _location;
         public AscentStats(string location)
         {
-
+            _location = location;
         }
-
-        #region factions
-        public int GetHorde()
+        
+        
+        
+        
+        //#region factions
+        public string GetHorde()
         {
+           WebClient wc = new WebClient();
+            wc.DownloadFile(_location, "stats.xml");
+            XmlDocument doc = new XmlDocument();
+            doc.Load(Settings.dir + "//stats.xml");
+            XmlNode node = doc.SelectSingleNode("/serverpage/status/horde");
+            string horde = node.Value;
+            return horde;
 
         }
 
-        public int GetAlliance()
+        /*public int GetAlliance()
         {
 
         }
@@ -155,7 +167,7 @@ namespace IRC_Bot
         {
 
         }
-
+        */
 
     }
 }

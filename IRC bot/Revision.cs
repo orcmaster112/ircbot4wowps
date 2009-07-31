@@ -2,6 +2,6 @@
 {
     class Revision
     {
-        public static int bot_revision = 49;
+        public static int bot_revision = 51;
     }
 }
