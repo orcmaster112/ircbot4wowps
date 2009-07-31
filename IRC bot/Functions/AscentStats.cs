@@ -1,173 +1,178 @@
-﻿using System;
-using System.Xml;
-using System.Xml.XPath;
-using System.Net;
+﻿using System.Xml;
 
 namespace IRC_Bot
 {
-    class AscentStats : Bot
+    class AscentStats
     {
+        
+        public static XmlDocument doc = new XmlDocument();
         public static string _location;
         public AscentStats(string location)
         {
+            doc.Load(location);
             _location = location;
         }
         
+        public string GetValue(string xpath) 
+        {
+            /*
+             * function to make grabbing info from the stats page easier.
+             * Uses XPath to select nodes. Also reduces the amount of code required.
+             */
+            doc.Load(_location); // make sure stats page is up to date?
+            XmlNode node = doc.SelectSingleNode(xpath);
+            string val = node.InnerText;
+            return val;
+        }
         
         
-        
-        //#region factions
+        #region factions
         public string GetHorde()
         {
-           WebClient wc = new WebClient();
-            wc.DownloadFile(_location, "stats.xml");
-            XmlDocument doc = new XmlDocument();
-            doc.Load(Settings.dir + "//stats.xml");
-            XmlNode node = doc.SelectSingleNode("/serverpage/status/horde");
-            string horde = node.Value;
-            return horde;
-
+           return GetValue("/serverpage/status/horde");
+           
         }
 
-        /*public int GetAlliance()
+        public string GetAlliance()
         {
-
+            return GetValue("/serverpage/status/alliance");
         }
         #endregion
-        public int GetTotalPlayers()
+        public string GetTotalPlayers()
         {
-
+            return GetValue("/serverpage/status/oplayers");
         }
 
         #region server
         public string GetMemoryUsage()
         {
-
+            return GetValue("/serverpage/status/ram");
         }
 
         public string GetCPU()
         {
-
+            return GetValue("/serverpage/status/cpu") + "%";
         }
 
 
         public string GetLatency()
         {
-
+            return GetValue("/serverpage/status/avglat") + "ms";
+                
         }
 
 
         #endregion
 
         #region races
-        public int GetHuman()
+        public string GetHuman()
         {
-
+            return GetValue("/serverpage/statsummary/human");
         }
 
-        public int GetDwarf()
+        public string GetDwarf()
         {
-
+            return GetValue("/serverpage/statsummary/dwarf");
         }
 
-        public int GetNightElf()
+        public string GetNightElf()
         {
-
+            return GetValue("/serverpage/statsummary/nightelf");
         }
 
-        public int GetGnome()
+        public string GetGnome()
         {
-
+            return GetValue("/serverpage/statsummary/gnome");
+        }
+        
+        public string GetOrc()
+        {
+            return GetValue("/serverpage/statsummary/orc");
         }
 
-        public int GetOrc()
+        public string GetUndead()
         {
-
+            return GetValue("/serverpage/statsummary/undead");
         }
 
-        public int GetUndead()
+        public string GetTauren()
         {
-
+            return GetValue("/serverpage/statsummary/tauren");
         }
 
-        public int GetTauren()
+        public string GetTroll()
         {
-
+            return GetValue("/serverpage/statsummary/troll");
         }
 
-        public int GetTroll()
+        public string GetBloodElf()
         {
-
+            return GetValue("/serverpage/statsummary/bloodelf");
         }
 
-        public int GetBloodElf()
+        public string GetDraenei()
         {
-
-        }
-
-        public int GetDraenei()
-        {
-
+            return GetValue("/serverpage/statsummary/draenei");
         }
 
         #endregion
 
         #region classes
-        public int GetWarrior()
+        public string GetWarrior()
         {
-
+            return GetValue("/serverpage/statsummary/warrior");
         }
 
-        public int GetHunter()
+        public string GetHunter()
         {
-
+            return GetValue("/serverpage/statsummary/hunter");
         }
 
-        public int GetPriest()
+        public string GetPriest()
         {
-
+            return GetValue("/serverpage/statsummary/priest");
         }
 
-        public int GetMage()
+        public string GetMage()
         {
-
+            return GetValue("/serverpage/statsummary/mage");
         }
 
-        public int GetWarlock()
+        public string GetWarlock()
         {
-
+            return GetValue("/serverpage/statsummary/warlock");
         }
 
-        public int GetPaladin()
+        public string GetPaladin()
         {
-
+            return GetValue("/serverpage/statsummary/paladin");
         }
 
-        public int GetRogue()
+        public string GetRogue()
         {
-
+            return GetValue("/serverpage/statsummary/rogue");
         }
 
-        public int GetShaman()
+        public string GetShaman()
         {
-
+            return GetValue("/serverpage/statsummary/shaman");
         }
 
-        public int GetDruid()
+        public string GetDruid()
         {
-
+            return GetValue("/serverpage/statsummary/druid");
         }
 
-        public int GetDeathKnight()
+        public string GetDeathKnight()
         {
-
+            return GetValue("/serverpage/statsummary/deathknight");
         }
         #endregion
-        public int GetGMCount()
+        public string GetGMCount()
         {
-
+            return GetValue("/serverpage/statsummary/gmcount");
         }
-        */
+        
 
     }
 }
