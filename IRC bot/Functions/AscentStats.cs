@@ -170,7 +170,7 @@ namespace IRC_Bot
         #endregion
         public string GetGMCount()
         {
-            return GetValue("/serverpage/statsummary/gmcount");
+            return GetValue("/serverpage/status/gmcount");
         }
         
 
