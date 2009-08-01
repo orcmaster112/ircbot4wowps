@@ -1,5 +1,6 @@
 ﻿using System.Net.Sockets;
 
+
 namespace IRC_Bot
 {
     public class ServerStatus

@@ -77,9 +77,6 @@ namespace IRC_Bot
                     break;
 
                 
-                    
-                    break;
-
                 case "!botinfo":
                     irc.SendMessage(SendType.Notice, e.Data.Nick,
                                     "ircbot4wowps r" + Revision.bot_revision);
