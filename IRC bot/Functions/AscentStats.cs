@@ -1,25 +1,34 @@
 ﻿using System.Xml;
+using System.Threading;
 
 namespace IRC_Bot
 {
-    class AscentStats
+   public class AscentStats
     {
         
         public static XmlDocument doc = new XmlDocument();
         public static string _location;
+       public Timer timer;
         public AscentStats(string location)
         {
             doc.Load(location);
             _location = location;
+            TimerCallback cb = ReloadXml;
+            timer = new Timer(cb, null, 0, 120000); // timer starts instantly, reloads xml every 2 minutes.
         }
         
+        public void ReloadXml(object obj)
+        {
+            doc.Load(_location); // reload stats.xml
+        }
+
         public string GetValue(string xpath) 
         {
             /*
              * function to make grabbing info from the stats page easier.
              * Uses XPath to select nodes. Also reduces the amount of code required.
              */
-            doc.Load(_location); // make sure stats page is up to date?
+            
             XmlNode node = doc.SelectSingleNode(xpath);
             string val = node.InnerText;
             return val;
@@ -167,6 +176,7 @@ namespace IRC_Bot
         {
             return GetValue("/serverpage/statsummary/deathknight");
         }
+
         #endregion
         public string GetGMCount()
         {
