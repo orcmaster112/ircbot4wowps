@@ -37,7 +37,7 @@ namespace IRC_Bot
         private void StatusCheck()
         {
             TimerCallback cb = RealmCheckTimer;
-            timer = new Timer(cb, null, 1000, 1000);
+            timer = new Timer(cb, null, 30000, 30000); //30,000ms timer (30 sec)
             Console.WriteLine("Checks starting for " + _servername + ":" + _port);
         }
 
